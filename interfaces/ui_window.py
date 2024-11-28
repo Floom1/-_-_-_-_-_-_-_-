@@ -1,0 +1,53 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(800, 600)
+        self.layoutWidget = QtWidgets.QWidget(Form)
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 781, 571))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.back_button = QtWidgets.QPushButton(self.layoutWidget)
+        self.back_button.setObjectName("back_button")
+        self.verticalLayout.addWidget(self.back_button)
+        self.btn_add_training = QtWidgets.QPushButton(self.layoutWidget)
+        self.btn_add_training.setObjectName("btn_add_training")
+        self.verticalLayout.addWidget(self.btn_add_training)
+        self.btn_view_progress = QtWidgets.QPushButton(self.layoutWidget)
+        self.btn_view_progress.setObjectName("btn_view_progress")
+        self.verticalLayout.addWidget(self.btn_view_progress)
+        self.table_trainings = QtWidgets.QTableWidget(self.layoutWidget)
+        self.table_trainings.setRowCount(0)
+        self.table_trainings.setColumnCount(4)
+        self.table_trainings.setObjectName("table_trainings")
+        item = QtWidgets.QTableWidgetItem()
+        self.table_trainings.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_trainings.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_trainings.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_trainings.setHorizontalHeaderItem(3, item)
+        self.verticalLayout.addWidget(self.table_trainings)
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Тренировки"))
+        self.back_button.setText(_translate("Form", "← Назад"))
+        self.btn_add_training.setText(_translate("Form", "Добавить тренировку"))
+        self.btn_view_progress.setText(_translate("Form", "Экспорт данных"))
+        item = self.table_trainings.horizontalHeaderItem(0)
+        item.setText(_translate("Form", "Дата"))
+        item = self.table_trainings.horizontalHeaderItem(1)
+        item.setText(_translate("Form", "Тип"))
+        item = self.table_trainings.horizontalHeaderItem(2)
+        item.setText(_translate("Form", "Длительность"))
+        item = self.table_trainings.horizontalHeaderItem(3)
+        item.setText(_translate("Form", "Комментарий"))
