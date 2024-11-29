@@ -135,7 +135,6 @@ class WindowForUserTraining(QWidget):
         self.ui.table_trainings.setRowCount(0)
 
         id_sportsman = get_sportsman_id(self.user_id)
-
     # Проверка, если id_sportsman не найден
         if id_sportsman is None:
             print("Спортсмен с данным id_login не найден.")

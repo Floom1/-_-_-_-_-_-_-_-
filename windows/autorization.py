@@ -79,8 +79,7 @@ class PasswordWindow(QWidget):
         elif role_id == 2:  # ID для user
             self.window = WindowForUserGreet(user_id)  # Передаем user_id
 
-        self.window.show() #Не закрывается
-        # window.exec_() # Закрывается 2 раза
+        self.window.show()
 
 
     # Открытие диалога регистрации
