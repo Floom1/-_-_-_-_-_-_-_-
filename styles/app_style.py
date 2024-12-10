@@ -29,8 +29,8 @@ def apply_style(window: QWidget):
         /* Стиль таблицы */
         QTableWidget {
             background-color: #bd1327;
-            color: #19180A;
-            gridline-color: #D9CAB3;
+            color: #D9CAB3;
+            gridline-color: #19180A;
             font-size: 14px;
         }
 

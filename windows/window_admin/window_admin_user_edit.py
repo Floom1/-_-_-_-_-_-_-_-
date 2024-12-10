@@ -64,7 +64,8 @@ class WindowUserEdit(QWidget):
         new_login = self.login_input.text()
         conn = create_connection()
         cursor = conn.cursor()
-        cursor.execute("UPDATE login_password SET login = ? WHERE id_login = ?", (new_login, self.user_id))
+        cursor.execute("UPDATE login_password SET login = ? WHERE id_login = ?",
+                        (new_login, self.user_id))
         conn.commit()
         conn.close()
         QMessageBox.information(self, "Успех", "Логин успешно обновлен.")

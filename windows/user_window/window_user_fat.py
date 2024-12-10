@@ -18,8 +18,8 @@ class WindowUserFat(QWidget):
         self.back_button.clicked.connect(self.go_back)
 
         self.belly_girth_input = QLineEdit()
-        self.belly_girth_input.setPlaceholderText("Введите ваш обхват живота")
-        self.belly_girth_input.setToolTip("Обхват живота в сантиметрах")
+        self.belly_girth_input.setPlaceholderText("Введите ваш обхват талии")
+        self.belly_girth_input.setToolTip("Обхват талии в сантиметрах")
 
         self.weight_input = QLineEdit()
         self.weight_input.setPlaceholderText("Введите ваш вес")
@@ -30,7 +30,7 @@ class WindowUserFat(QWidget):
 
         # Добавление кнопок в layout
         layout.addWidget(self.back_button)
-        layout.addWidget(QLabel("Введите ваш обхват живота (в см):"))
+        layout.addWidget(QLabel("Введите ваш обхват талии (в см):"))
         layout.addWidget(self.belly_girth_input)
         layout.addWidget(QLabel("Введите ваш вес (в кг):"))
         layout.addWidget(self.weight_input)
@@ -56,9 +56,9 @@ class WindowUserFat(QWidget):
             weight = float(self.weight_input.text())
 
             if belly_girth < 50:
-                raise ValueError("Обхват живота должен быть не меньше 50 см.")
+                raise ValueError("Обхват талии должен быть не меньше 50 см.")
             if belly_girth > 225:
-                raise ValueError("Обхват живота должен быть не больше 225 см.")
+                raise ValueError("Обхват талии должен быть не больше 225 см.")
             if weight < 30:
                 raise ValueError("Вес должен быть не меньше 30 кг.")
             if weight > 165:

@@ -27,7 +27,8 @@ def add_user(name, last_name, sex, login, password):
     user_role_id = cursor.fetchone()[0]
 
     # Добавление логина, пароля и роли
-    cursor.execute("INSERT INTO login_password (login, password, id_role) VALUES (?, ?, ?)", (login, password, user_role_id))
+    cursor.execute("INSERT INTO login_password (login, password, id_role) VALUES (?, ?, ?)",
+                    (login, password, user_role_id))
     id_login = cursor.lastrowid
 
     # Преобразование пола для записи
@@ -35,7 +36,7 @@ def add_user(name, last_name, sex, login, password):
 
     # Добавление пользователя как Спорстмена
     cursor.execute("INSERT INTO amateur_athlete (name, last_name, sex, id_login) VALUES (?, ?, ?, ?)",
-                   (name, last_name, sex, id_login))
+                (name, last_name, sex, id_login))
 
     conn.commit()
     conn.close()

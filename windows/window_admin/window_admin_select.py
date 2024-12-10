@@ -74,9 +74,10 @@ class AdminMainWindow(QWidget):
             if confirm == QMessageBox.Yes:
                 conn = create_connection()
                 cursor = conn.cursor()
-                cursor.execute("DELETE FROM training WHERE id_sportsman = (SELECT id_sportsman FROM amateur_athlete WHERE id_login = ?)", (user_id,))
+                cursor.execute("""DELETE FROM training WHERE id_sportsman = (SELECT id_sportsman
+                               FROM amateur_athlete WHERE id_login = ?)""", (user_id,))
                 cursor.execute("DELETE FROM amateur_athlete WHERE id_login = ?", (user_id,))
-                cursor.execute("DELETE FROM login_password WHERE id_login = ?", (user_id,)) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                cursor.execute("DELETE FROM login_password WHERE id_login = ?", (user_id,))
                 conn.commit()
                 conn.close()
                 self.refresh_table()

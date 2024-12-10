@@ -168,7 +168,8 @@ class WindowForUserTraining(QWidget):
                 cursor = conn.cursor()
                 cursor.execute(
                     "INSERT INTO training (id_sportsman, date, type, duration, comment) VALUES (?, ?, ?, ?, ?)",
-                    (get_sportsman_id(self.user_id), training_data["date"], training_data["type"], training_data["duration"], training_data["comments"])
+                    (get_sportsman_id(self.user_id), training_data["date"], training_data["type"],
+                        training_data["duration"], training_data["comments"])
                 )
                 conn.commit()
                 conn.close()
@@ -188,10 +189,11 @@ class WindowForUserTraining(QWidget):
         if not file_path:
             return  # Пользователь отменил выбор пути
 
-        # Подключение к базе данных и извлечение тренировок для определенного спортсмена
+        # Подключение к базе данных и извлечение тренировок для спортсмена
         conn = create_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT date, type, duration, comment FROM training WHERE id_sportsman = ?", (get_sportsman_id(self.user_id),))
+        cursor.execute("""SELECT date, type, duration, comment FROM training
+                WHERE id_sportsman = ?""", (get_sportsman_id(self.user_id),))
         trainings = cursor.fetchall()
         conn.close()
 

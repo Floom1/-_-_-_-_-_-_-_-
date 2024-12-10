@@ -73,16 +73,20 @@ class WindowAdminTrain(QWidget):
     def delete_selected_training(self):
         selected_row = self.table_trainings.currentRow()
         if selected_row == -1:
-            QMessageBox.warning(self, "Нет выбора", "Пожалуйста, выберите тренировку, чтобы удалить.")
+            QMessageBox.warning(self, "Нет выбора",
+                                 "Пожалуйста, выберите тренировку, чтобы удалить.")
             return
 
-        reply = QMessageBox.question(self, "Подтверждение удаления", "Вы уверены, что хотите удалить эту тренировку?",
+        reply = QMessageBox.question(self, "Подтверждение удаления",
+                                      "Вы уверены, что хотите удалить эту тренировку?",
                                      QMessageBox.Yes | QMessageBox.No)
         if reply == QMessageBox.Yes:
             date = self.table_trainings.item(selected_row, 0).text()
             conn = create_connection()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM training WHERE date = ? AND id_sportsman = (SELECT id_sportsman FROM amateur_athlete WHERE id_login = ?)", (date, self.user_id))
+            cursor.execute("""DELETE FROM training
+                            WHERE date = ? AND id_sportsman = (SELECT id_sportsman
+                            FROM amateur_athlete WHERE id_login = ?)""", (date, self.user_id))
             conn.commit()
             conn.close()
 
@@ -92,12 +96,15 @@ class WindowAdminTrain(QWidget):
 
     # Удаление всех тренировок
     def delete_all_trainings(self):
-        reply = QMessageBox.question(self, "Подтверждение удаления", "Вы уверены, что хотите удалить ВСЕ тренировки?",
+        reply = QMessageBox.question(self, "Подтверждение удаления",
+                                      "Вы уверены, что хотите удалить ВСЕ тренировки?",
                                      QMessageBox.Yes | QMessageBox.No)
         if reply == QMessageBox.Yes:
             conn = create_connection()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM training WHERE id_sportsman = (SELECT id_sportsman FROM amateur_athlete WHERE id_login = ?)", (self.user_id,))
+            cursor.execute("""DELETE FROM training
+                           WHERE id_sportsman = (SELECT id_sportsman
+                           FROM amateur_athlete WHERE id_login = ?)""", (self.user_id,))
             conn.commit()
             conn.close()
 
